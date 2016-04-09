@@ -1,12 +1,22 @@
-application/*
+application/cache/
+application/config/*
 !application/config/boleto.php
-!application/controllers/*
+!application/controllers/
 application/controllers/index.html
+application/core/
+application/helpers/
+application/hooks/
+application/language/
 !application/libraries/*
 application/libraries/index.html
+application/logs/
+application/models/
+application/third_party/
 !application/views/*
 application/views/errors
 application/views/index.html
+application/.htaccess
+application/index.html
 
 system/*
 

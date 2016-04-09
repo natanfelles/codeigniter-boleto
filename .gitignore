@@ -21,5 +21,6 @@ application/index.html
 system/*
 
 index.php
+phpstorm.php
 
 .idea/*

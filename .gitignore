@@ -1,7 +1,12 @@
 application/*
 !application/config/boleto.php
-!application/controllers
-!application/libraries
+!application/controllers/*
+application/controllers/index.html
+!application/libraries/*
+application/libraries/index.html
+!application/views/*
+application/views/errors
+application/views/index.html
 
 system/*
 

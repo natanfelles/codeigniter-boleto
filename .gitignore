@@ -1,0 +1,10 @@
+application/*
+!application/config/boleto.php
+!application/controllers
+!application/libraries
+
+system/*
+
+index.php
+
+.idea/*

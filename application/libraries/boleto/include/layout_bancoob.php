@@ -84,7 +84,7 @@
 		/* *** CABECALHO *** */
 
 		#instr_header {
-			background: url('imagens/logo_empresa.png') no-repeat top left;
+			background: url('<?php echo $this->imagens; ?>/logo_empresa.png') no-repeat top left;
 			padding-left: 160px;
 			height: 65px;
 		}
@@ -538,7 +538,7 @@
 		<table class="header" border=0 cellspacing="0" cellpadding="0">
 			<tbody>
 			<tr>
-				<td width=150><IMG SRC="imagens/logobancoob.jpg"></td>
+				<td width=150><IMG SRC="<?php echo $this->imagens; ?>/logobancoob.jpg"></td>
 				<td width=50>
 					<div class="field_cod_banco"><?php echo $dadosboleto["codigo_banco_com_dv"]?></div>
 				</td>
@@ -631,7 +631,7 @@
 		<table class="header" border=0 cellspacing="0" cellpadding="0">
 			<tbody>
 			<tr>
-				<td width=150><IMG SRC="imagens/logobancoob.jpg"></td>
+				<td width=150><IMG SRC="<?php echo $this->imagens; ?>/logobancoob.jpg"></td>
 				<td width=50>
 					<div class="field_cod_banco"><?php echo $dadosboleto["codigo_banco_com_dv"]?></div>
 				</td>
@@ -834,7 +834,7 @@
 		</div>
 
 		<div class="barcode">
-			<p><?php fbarcode($dadosboleto["codigo_barras"]); ?></p>
+			<p><?php fbarcode($dadosboleto["codigo_barras"], $this->imagens); ?></p>
 		</div>
 
 		<div class="cut">

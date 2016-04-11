@@ -126,7 +126,7 @@ function formata_numero($numero,$loop,$insert,$tipo = "geral") {
 }
 
 
-function fbarcode($valor){
+function fbarcode($valor, $imagens){
 
 	$fino = 1 ;
 	$largo = 3 ;
@@ -158,10 +158,10 @@ function fbarcode($valor){
 
 
 	//Guarda inicial
-	?><img src=imagens/p.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
-		src=imagens/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
-		src=imagens/p.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
-		src=imagens/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
+	?><img src=<?php echo $imagens; ?>/p.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
+		src=<?php echo $imagens; ?>/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
+		src=<?php echo $imagens; ?>/p.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
+		src=<?php echo $imagens; ?>/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
 	<?php
 	$texto = $valor ;
 	if((strlen($texto) % 2) <> 0){
@@ -180,7 +180,7 @@ function fbarcode($valor){
 				$f1 = $largo ;
 			}
 			?>
-			src=imagens/p.png width=<?php echo $f1?> height=<?php echo $altura?> border=0><img
+			src=<?php echo $imagens; ?>/p.png width=<?php echo $f1?> height=<?php echo $altura?> border=0><img
 				<?php
 				if (substr($f,$i,1) == "0") {
 					$f2 = $fino ;
@@ -188,16 +188,16 @@ function fbarcode($valor){
 					$f2 = $largo ;
 				}
 				?>
-				src=imagens/b.png width=<?php echo $f2?> height=<?php echo $altura?> border=0><img
+				src=<?php echo $imagens; ?>/b.png width=<?php echo $f2?> height=<?php echo $altura?> border=0><img
 			<?php
 		}
 	}
 
 	// Draw guarda final
 	?>
-	src=imagens/p.png width=<?php echo $largo?> height=<?php echo $altura?> border=0><img
-		src=imagens/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
-		src=imagens/p.png width=<?php echo 1?> height=<?php echo $altura?> border=0>
+	src=<?php echo $imagens; ?>/p.png width=<?php echo $largo?> height=<?php echo $altura?> border=0><img
+		src=<?php echo $imagens; ?>/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
+		src=<?php echo $imagens; ?>/p.png width=<?php echo 1?> height=<?php echo $altura?> border=0>
 	<?php
 } //Fim da função
 

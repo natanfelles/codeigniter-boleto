@@ -82,7 +82,7 @@
 		/* *** CABECALHO *** */
 
 		#instr_header {
-			background: url('imagens/logo_empresa.png') no-repeat top left;
+			background: url('<?php echo $this->imagens; ?>/logo_empresa.png') no-repeat top left;
 			padding-left: 160px;
 			height: 65px;
 		}
@@ -541,7 +541,7 @@
 		<table class="header" border=0 cellspacing="0" cellpadding="0">
 			<tbody>
 			<tr>
-				<td width=150><IMG SRC="imagens/logobb.jpg"></td>
+				<td width=150><IMG SRC="<?php echo $this->imagens; ?>/logobb.jpg"></td>
 				<td width=50>
 					<div class="field_cod_banco"><?php echo $dadosboleto["codigo_banco_com_dv"]?></div>
 				</td>
@@ -634,7 +634,7 @@
 		<table class="header" border=0 cellspacing="0" cellpadding="0">
 			<tbody>
 			<tr>
-				<td width=150><IMG SRC="imagens/logobb.jpg"></td>
+				<td width=150><IMG SRC="<?php echo $this->imagens; ?>/logobb.jpg"></td>
 				<td width=50>
 					<div class="field_cod_banco"><?php echo $dadosboleto["codigo_banco_com_dv"]?></div>
 				</td>
@@ -833,7 +833,7 @@
 		</table>
 		<table cellspacing=0 cellpadding=0 width=666 border=0><TBODY><TR><TD width=666 align=right ><font style="font-size: 10px;">Autentica&ccedil;&atilde;o mec&acirc;nica - Ficha de Compensação</font></TD></tr></tbody></table>
 		<div class="barcode">
-			<p><?php fbarcode($dadosboleto["codigo_barras"]); ?></p>
+			<p><?php fbarcode($dadosboleto["codigo_barras"], $this->imagens); ?></p>
 		</div>
 		<div class="cut">
 			<p>Corte na linha pontilhada</p>

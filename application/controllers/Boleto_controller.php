@@ -31,7 +31,7 @@ class Boleto_controller extends CI_Controller {
 		$dados['sacado']['uf'] = 'RS';
 		$dados['sacado']['cep'] = '93800-000';
 
-		$this->boleto->bancoob($dados);
+		$this->boleto->unibanco($dados);
 
 	}
 

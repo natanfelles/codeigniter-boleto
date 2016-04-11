@@ -23,6 +23,7 @@ class Boleto_controller extends CI_Controller {
 		$dados['pedido']['quantidade'] = 4;
 		$dados['pedido']['valor_unitario'] = 2.5;
 		$dados['pedido']['numero'] = 125;
+		$dados['pedido']['especie_doc'] = '';
 
 		$dados['sacado']['nome'] = 'João da Silva';
 		$dados['sacado']['endereco'] = 'Av. Porto Palmeira';
@@ -30,7 +31,7 @@ class Boleto_controller extends CI_Controller {
 		$dados['sacado']['uf'] = 'RS';
 		$dados['sacado']['cep'] = '93800-000';
 
-		$this->boleto->cef();
+		$this->boleto->bancoob($dados);
 
 	}
 

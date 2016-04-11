@@ -74,7 +74,8 @@ $dadosboleto["especie_doc"] = $this->pedido['especie_doc'];
 
 
 // DADOS DA SUA CONTA - CEF
-$dadosboleto["agencia"] = $this->cedente['agencia']; // Num da agencia, sem digito
+$agencia = explode('-',$this->cedente['agencia']);
+$dadosboleto["agencia"] = $agencia[0]; // Num da agencia, sem digito
 $conta = explode('-',$this->cedente['conta']);
 $dadosboleto["conta"] = $conta[0]; 	// Num da conta, sem digito
 $dadosboleto["conta_dv"] = $conta[1]; 	// Digito do Num da conta

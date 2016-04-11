@@ -14,16 +14,20 @@ class Boleto_controller extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->library('boleto');
-		$this->load->config('boleto');
 	}
 
 
 	public function index()
 	{
+		$dados['dias_de_prazo_para_pagamento'] = 5;
+		$dados['taxa_boleto'] = 1;
+
 		$dados['pedido']['quantidade'] = 4;
-		$dados['pedido']['valor_unitario'] = 2.5;
+		$dados['pedido']['valor_unitario'] = 10;
 		$dados['pedido']['numero'] = 125;
-		$dados['pedido']['especie_doc'] = '';
+		$dados['pedido']['aceite'] = 'N';
+		$dados['pedido']['especie'] = 'R$';
+		$dados['pedido']['especie_doc'] = 'DS';
 
 		$dados['sacado']['nome'] = 'João da Silva';
 		$dados['sacado']['endereco'] = 'Av. Porto Palmeira';

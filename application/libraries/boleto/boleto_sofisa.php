@@ -35,65 +35,68 @@
 
 
 // DADOS DO BOLETO PARA O SEU CLIENTE
-$taxa_boleto                        = 0;
-$data_venc                          = $data_vencimento;
-$valor_cobrado                      = $valor_boleto_aux;
+$taxa_boleto                        = $this->taxa_boleto;
+$data_venc                          = date("d/m/Y", time() + ($this->dias_de_prazo_para_pagamento * 86400));
+$valor_cobrado                      = $this->pedido['quantidade'] * $this->pedido['valor_unitario'];
 $valor_cobrado                      = str_replace(",", ".",$valor_cobrado);
 $valor_boleto                       = number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
 
-$dadosboleto["nosso_numero"]        = $nosso_numero;                // Nosso numero DV - REGRA: Máximo de 10 caracteres!
-$dadosboleto["numero_documento"]    = $dadosboleto["nosso_numero"]; // Num do pedido ou do documento = Nosso numero
+$dadosboleto["nosso_numero"]        = $this->cedente['nosso_numero'];                // Nosso numero DV - REGRA: Máximo de 10 caracteres!
+$dadosboleto["numero_documento"]    = $this->pedido['numero']; // Num do pedido ou do documento = Nosso numero
 $dadosboleto["data_vencimento"]     = $data_venc;                   // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
 
-$dadosboleto["data_documento"]      = $data_geracao;    // Data de processamento do boleto (opcional)
-$dadosboleto["data_processamento"]  = $data_geracao;    // Data de processamento do boleto (opcional)
+$dadosboleto["data_documento"]      = date("d/m/Y");    // Data de processamento do boleto (opcional)
+$dadosboleto["data_processamento"]  = date("d/m/Y");    // Data de processamento do boleto (opcional)
 
 $dadosboleto["valor_boleto"]        = $valor_boleto;    // Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
 
 // DADOS DO SEU CLIENTE
-$dadosboleto["sacado"]              = $sacado_nome;
-$dadosboleto["endereco1"]           = $sacado_endereco;
-$dadosboleto["endereco2"]           = $sacado_cidade_uf_cep;
+$dadosboleto["sacado"] = $this->sacado['nome'];
+$dadosboleto["endereco1"] = $this->sacado['endereco'];
+$dadosboleto["endereco2"] = "{$this->sacado['cidade']}, {$this->sacado['uf']} -  CEP: {$this->sacado['cep']}";
 
 // INFORMACOES PARA O CLIENTE
 
-$dadosboleto["demonstrativo1"]      = "";
-$dadosboleto["demonstrativo2"]      = "";
-$dadosboleto["demonstrativo3"]      = "";
+$dadosboleto["demonstrativo1"] = $this->demonstrativo['linha1'];
+$dadosboleto["demonstrativo2"] = $this->demonstrativo['linha2'] . number_format($taxa_boleto, 2, ',', '');
+$dadosboleto["demonstrativo3"] = $this->demonstrativo['linha3'];
 
-$dadosboleto["instrucoes1"]         = "- Sr. Caixa, não receber após o vencimento.";
-# $dadosboleto["instrucoes2"]         = "- Receber até 10 dias após o vencimento";
-# $dadosboleto["instrucoes3"]         = "- Em caso de dúvidas entre em contato conosco: xxxx@xxxx.com.br";
-# $dadosboleto["instrucoes4"]         = "&nbsp; Emitido pelo sistema Projeto BoletoPhp - www.boletophp.com.br";
+$dadosboleto["instrucoes1"] = $this->instrucoes['linha1'];
+$dadosboleto["instrucoes2"] = $this->instrucoes['linha2'];
+$dadosboleto["instrucoes3"] = $this->instrucoes['linha3'];
+$dadosboleto["instrucoes4"] = $this->instrucoes['linha4'];
 
 // DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
-$dadosboleto["quantidade"]          = "001";
-$dadosboleto["valor_unitario"]      = $valor_boleto;
-$dadosboleto["aceite"]              = "";
-$dadosboleto["especie"]             = "R$";
-$dadosboleto["especie_doc"]         = "REC";
+$dadosboleto["quantidade"] = $this->pedido['quantidade'];
+$dadosboleto["valor_unitario"] = $this->pedido['valor_unitario'];
+$dadosboleto["aceite"] = $this->pedido['aceite'];
+$dadosboleto["especie"] = $this->pedido['especie'];
+$dadosboleto["especie_doc"] = $this->pedido['especie_doc'];
 
 
 // ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
 
 
 // DADOS DA SUA CONTA
-$dadosboleto["agencia"]             = $agencia;     // Num da agencia, sem digito
-$dadosboleto["agencia_dv"]          = $agencia_dv;  // Digito do Num da agencia
-$dadosboleto["conta"]               = $conta;       // Num da conta, sem digito
-$dadosboleto["conta_dv"]            = $conta_dv;    // Digito do Num da conta
+$agencia = explode('-',$this->cedente['agencia']);
+$dadosboleto["agencia"]             = $agencia[0];     // Num da agencia, sem digito
+$dadosboleto["agencia_dv"]          = $agencia[1];  // Digito do Num da agencia
+$conta = explode('-',$this->cedente['conta']);
+$dadosboleto["conta"]               = $conta[0];       // Num da conta, sem digito
+$dadosboleto["conta_dv"]            = $conta[1];    // Digito do Num da conta
 
 // DADOS PERSONALIZADOS
-$dadosboleto["conta_cedente"]       = $dadosboleto["conta"];    // ContaCedente do Cliente, sem digito (Somente Números)
-$dadosboleto["conta_cedente_dv"]    = $dadosboleto["conta_dv"]; // Digito da ContaCedente do Cliente
-$dadosboleto["carteira"]            = "121";                    // Código da Carteira: 121
+$conta_cedente = explode('-',$this->cedente['conta_cedente']);
+$dadosboleto["conta_cedente"]       = $conta_cedente[0];    // ContaCedente do Cliente, sem digito (Somente Números)
+$dadosboleto["conta_cedente_dv"]    = $conta_cedente[1]; // Digito da ContaCedente do Cliente
+$dadosboleto["carteira"]            = $this->cedente['carteira'];                    // Código da Carteira: 121
 
 // SEUS DADOS
-$dadosboleto["identificacao"]       = $cedente_identificacao;
-$dadosboleto["cpf_cnpj"]            = $cedente_cnpj;
-$dadosboleto["endereco"]            = $cedente_endereco;
-$dadosboleto["cidade_uf"]           = $cedente_cidade_uf;
-$dadosboleto["cedente"]             = $cedente_razao_soscial;
+$dadosboleto["identificacao"] = $this->cedente['nome'];
+$dadosboleto["cpf_cnpj"] = $this->cedente['cpf_cnpj'];
+$dadosboleto["endereco"] = $this->cedente['endereco'];
+$dadosboleto["cidade_uf"] = "{$this->cedente['cidade']} / {$this->cedente['uf']}";
+$dadosboleto["cedente"] = $this->cedente['nome'];
 
 
 // NÃO ALTERAR!

@@ -71,7 +71,7 @@ class Boleto {
 
 	protected $dias_de_prazo_para_pagamento = 0;
 
-	protected $taxa_boleto = 2.5;
+	protected $taxa_boleto = 0;
 
 
 	public function __construct()

@@ -43,6 +43,8 @@ $fator_vencimento       = fator_vencimento($dadosboleto["data_vencimento"]);
 $valor = formata_numero($dadosboleto["valor_boleto"],10,0,"valor");
 //agencia é 4 digitos
 $agencia = formata_numero($dadosboleto["agencia"],4,0);
+$agencia_dv = explode('-', $agencia);
+$agencia_dv = $agencia[0];
 //conta é 6 digitos
 $conta = formata_numero($dadosboleto["conta"],6,0);
 //dv da conta

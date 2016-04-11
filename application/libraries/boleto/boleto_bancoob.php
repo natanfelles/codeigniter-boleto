@@ -34,7 +34,7 @@
 // DADOS DO BOLETO PARA O SEU CLIENTE
 $dias_de_prazo_para_pagamento = 7;
 $taxa_boleto = 0;
-$data_venc = "14/05/2013";//date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
+$data_venc = "14/05/2013";//date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006";
 $valor_cobrado = "1,00"; // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
 $valor_cobrado = str_replace(",", ".",$valor_cobrado);
 $valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
@@ -49,14 +49,14 @@ $valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
 // http://www.bancoob.com.br/atendimentocobranca/CAS/2_Implanta%C3%A7%C3%A3o_do_Servi%C3%A7o/Sistema_Proprio/DigitoVerificador.htm
 // http://blog.inhosting.com.br/calculo-do-nosso-numero-no-boleto-bancoob-sicoob-do-boletophp/
 // http://www.samuca.eti.br
-// 
+//
 // http://www.bancoob.com.br/atendimentocobranca/CAS/2_Implanta%C3%A7%C3%A3o_do_Servi%C3%A7o/Sistema_Proprio/LinhaDigitavelCodicodeBarras.htm
 
 // Contribuição de script por:
-// 
+//
 // Samuel de L. Hantschel
 // Site: www.samuca.eti.br
-// 
+//
 
 if(!function_exists('formata_numdoc'))
 {
@@ -64,9 +64,9 @@ if(!function_exists('formata_numdoc'))
 	{
 		while(strlen($num)<$tamanho)
 		{
-			$num="0".$num; 
+			$num="0".$num;
 		}
-	return $num;
+		return $num;
 	}
 }
 
@@ -80,29 +80,29 @@ $qtde_nosso_numero = strlen($NossoNumero);
 $sequencia = formata_numdoc($agencia,4).formata_numdoc(str_replace("-","",$convenio),10).formata_numdoc($NossoNumero,7);
 $cont=0;
 $calculoDv = '';
-	for($num=0;$num<=strlen($sequencia);$num++)
+for($num=0;$num<=strlen($sequencia);$num++)
+{
+	$cont++;
+	if($cont == 1)
 	{
-		$cont++;
-		if($cont == 1)
-		{
-			// constante fixa Sicoob » 3197 
-			$constante = 3;
-		}
-		if($cont == 2)
-		{
-			$constante = 1;
-		}
-		if($cont == 3)
-		{
-			$constante = 9;
-		}
-		if($cont == 4)
-		{
-			$constante = 7;
-			$cont = 0;
-		}
-		$calculoDv = $calculoDv + (substr($sequencia,$num,1) * $constante);
+		// constante fixa Sicoob » 3197
+		$constante = 3;
 	}
+	if($cont == 2)
+	{
+		$constante = 1;
+	}
+	if($cont == 3)
+	{
+		$constante = 9;
+	}
+	if($cont == 4)
+	{
+		$constante = 7;
+		$cont = 0;
+	}
+	$calculoDv = $calculoDv + (substr($sequencia,$num,1) * $constante);
+}
 $Resto = $calculoDv % 11;
 $Dv = 11 - $Resto;
 if ($Dv == 0) $Dv = 0;
@@ -141,7 +141,7 @@ $dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto BoletoPhp - w
 // DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
 $dadosboleto["quantidade"] = "10";
 $dadosboleto["valor_unitario"] = "10";
-$dadosboleto["aceite"] = "N";		
+$dadosboleto["aceite"] = "N";
 $dadosboleto["especie"] = "R$";
 $dadosboleto["especie_doc"] = "DM";
 

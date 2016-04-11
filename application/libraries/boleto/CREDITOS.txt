@@ -1,18 +1,18 @@
-Coordenador Projeto BoletoPhp - Elizeu Alcantara 
-Projeto PhpBoleto - Jo„o Prado Maia e Pablo Martins F. Costa
+Coordenador Projeto BoletoPhp - Elizeu Alcantara
+Projeto PhpBoleto - Jo√£o Prado Maia e Pablo Martins F. Costa
 Projeto BBBoletoFree - Daniel William Schultz
-Boleto Banco do Brasil - Daniel William Schultz / Leandro Maniezo / RogÈrio Dias Pereira / Romeu Medeiros
+Boleto Banco do Brasil - Daniel William Schultz / Leandro Maniezo / Rog√©rio Dias Pereira / Romeu Medeiros
 Boleto Unibanco - Elizeu Alcantara
 Boleto Caixa - Elizeu Alcantara
-Boleto Ita˙ - Glauber Portella
+Boleto Ita√∫ - Glauber Portella
 Boleto Hsbc - Bruno Leonardo
 Boleto Bradesco - Ramon Soares
-Boleto Banestes - Fernando JosÈ de Oliveira Chagas
+Boleto Banestes - Fernando Jos√© de Oliveira Chagas
 Boleto Real - Juan Basso
-Boleto NossaCaixa - Keitty SuÈlen
-Boleto Sudameris - Fl·vio Yutaka Nakamura
-Boleto Santander Banespa (353) - F·bio Lenharo
-Boleto Santander Banespa (033) - F·bio Gabbay
+Boleto NossaCaixa - Keitty Su√©len
+Boleto Sudameris - Fl√°vio Yutaka Nakamura
+Boleto Santander Banespa (353) - F√°bio Lenharo
+Boleto Santander Banespa (033) - F√°bio Gabbay
 Boleto Caixa SINCO: Carlos Magno / Reinaldo Silva
 Boleto Caixa SIGCB: Davi Camargo / Leandro Vieira Pinho
 Boleto Bancoob: Marcelo Souza

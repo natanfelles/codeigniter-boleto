@@ -1,11 +1,11 @@
 <?php
 // +----------------------------------------------------------------------+
-// | BoletoPhp - Versão Beta                                              |
+// | BoletoPhp - VersÃ£o Beta                                              |
 // +----------------------------------------------------------------------+
-// | Este arquivo está disponível sob a Licença GPL disponível pela Web   |
+// | Este arquivo estÃ¡ disponÃ­vel sob a LicenÃ§a GPL disponÃ­vel pela Web   |
 // | em http://pt.wikipedia.org/wiki/GNU_General_Public_License           |
-// | Você deve ter recebido uma cópia da GNU Public License junto com     |
-// | esse pacote; se não, escreva para:                                   |
+// | VocÃª deve ter recebido uma cÃ³pia da GNU Public License junto com     |
+// | esse pacote; se nÃ£o, escreva para:                                   |
 // |                                                                      |
 // | Free Software Foundation, Inc.                                       |
 // | 59 Temple Place - Suite 330                                          |
@@ -13,16 +13,16 @@
 // +----------------------------------------------------------------------+
 
 // +----------------------------------------------------------------------+
-// | Originado do Projeto BBBoletoFree que tiveram colaborações de Daniel |
+// | Originado do Projeto BBBoletoFree que tiveram colaboraÃ§Ãµes de Daniel |
 // | William Schultz e Leandro Maniezo que por sua vez foi derivado do	  |
-// | PHPBoleto de João Prado Maia e Pablo Martins F. Costa                |
+// | PHPBoleto de JoÃ£o Prado Maia e Pablo Martins F. Costa                |
 // |                                                                      |
 // | Se vc quer colaborar, nos ajude a desenvolver p/ os demais bancos :-)|
 // | Acesse o site do Projeto BoletoPhp: www.boletophp.com.br             |
 // +----------------------------------------------------------------------+
 
 // +----------------------------------------------------------------------+
-// | Equipe Coordenação Projeto BoletoPhp: <boletophp@boletophp.com.br>   |
+// | Equipe CoordenaÃ§Ã£o Projeto BoletoPhp: <boletophp@boletophp.com.br>   |
 // | Desenvolvimento Boleto Bradesco: Ramon Soares                        |
 // +----------------------------------------------------------------------+
 
@@ -41,24 +41,24 @@ $fator_vencimento       = fator_vencimento($dadosboleto["data_vencimento"]);
 
 //valor tem 10 digitos, sem virgula
 $valor = formata_numero($dadosboleto["valor_boleto"],10,0,"valor");
-//agencia é 4 digitos
+//agencia Ã© 4 digitos
 $agencia = formata_numero($dadosboleto["agencia"],4,0);
-//conta é 6 digitos
+//conta Ã© 6 digitos
 $conta = formata_numero($dadosboleto["conta"],6,0);
 //dv da conta
 $conta_dv = formata_numero($dadosboleto["conta_dv"],1,0);
-//carteira é 3 caracteres
+//carteira Ã© 3 caracteres
 $carteira = formata_numero($dadosboleto["carteira"],3,0);
-//nosso numero é 10 caracteres
+//nosso numero Ã© 10 caracteres
 $nosso_numero = formata_numero($dadosboleto["nosso_numero"],10,0);
 
-//nosso número (sem dv) é 10 digitos
+//nosso nÃºmero (sem dv) Ã© 10 digitos
 $nnum = $agencia.$agencia_dv.$carteira.$nosso_numero;
 
-//dv do nosso número
+//dv do nosso nÃºmero
 $dv_nosso_numero = digitoVerificador_nossonumero($nnum);
 
-//conta cedente (sem dv) é 6 digitos
+//conta cedente (sem dv) Ã© 6 digitos
 $conta_cedente = formata_numero($dadosboleto["conta_cedente"],6,0);
 //dv da conta cedente
 $conta_cedente_dv = formata_numero($dadosboleto["conta_cedente_dv"],1,0);
@@ -67,7 +67,7 @@ $conta_cedente_dv = formata_numero($dadosboleto["conta_cedente_dv"],1,0);
 $linha    = "$codigobanco$nummoeda"."0"."$fator_vencimento$valor$agencia$carteira$conta_cedente$conta_cedente_dv$nosso_numero$dv_nosso_numero";
 $dv       = digitoVerificador_barra($linha);
 
-// Alterando a posição 4(digito '0') para o $dv
+// Alterando a posiÃ§Ã£o 4(digito '0') para o $dv
 $linha[4] = $dv;
 
 $nossonumero    = $carteira."/".$nosso_numero;
@@ -83,7 +83,7 @@ $dadosboleto["codigo_banco_com_dv"] = $codigo_banco_com_dv;
 function digitoVerificador_nossonumero($numero) {
     $fator = 2;
     $soma  = 0;
-    
+
     for($i = 0; $i < strlen($numero); $i++) {
         if($fator == 2) {
             $aux = $numero[$i] * $fator;
@@ -94,7 +94,7 @@ function digitoVerificador_nossonumero($numero) {
             } else {
                 $soma += $aux;
             }
-            
+
             $fator = 1;
         } else {
             $aux = $numero[$i] * $fator;
@@ -105,21 +105,21 @@ function digitoVerificador_nossonumero($numero) {
             } else {
                 $soma += $aux;
             }
-            
+
             $fator = 2;
         }
     }
-    
+
     $var = $soma % 10;
     $dv  = 10 - $var;
-    
+
     return $dv;
 }
 
 
 function digitoVerificador_barra($numero) {
     $pesos = "43290876543298765432987654329876543298765432";
-    
+
     if (strlen($numero) == 44) {
         $soma = 0;
         for ($i = 0; $i < strlen($numero); $i++) {
@@ -134,7 +134,7 @@ function digitoVerificador_barra($numero) {
 }
 
 
-// FUNÇÕES
+// FUNÃ‡Ã•ES
 // Algumas foram retiradas do Projeto PhpBoleto e modificadas para atender as particularidades de cada banco
 function formata_numero($numero,$loop,$insert,$tipo = "geral") {
     if ($tipo == "geral") {
@@ -164,11 +164,11 @@ function formata_numero($numero,$loop,$insert,$tipo = "geral") {
 
 
 function fbarcode($valor){
-    
+
     $fino = 1 ;
     $largo = 3 ;
     $altura = 50 ;
-    
+
     $barcodes[0] = "00110" ;
     $barcodes[1] = "10001" ;
     $barcodes[2] = "01001" ;
@@ -181,61 +181,61 @@ function fbarcode($valor){
     $barcodes[9] = "01010" ;
     for($f1=9;$f1>=0;$f1--) {
         for($f2=9;$f2>=0;$f2--) {
-          $f = ($f1 * 10) + $f2 ;
-          $texto = "" ;
-          for($i=1;$i<6;$i++) {
-            $texto .=  substr($barcodes[$f1],($i-1),1) . substr($barcodes[$f2],($i-1),1);
-          }
-          $barcodes[$f] = $texto;
+            $f = ($f1 * 10) + $f2 ;
+            $texto = "" ;
+            for($i=1;$i<6;$i++) {
+                $texto .=  substr($barcodes[$f1],($i-1),1) . substr($barcodes[$f2],($i-1),1);
+            }
+            $barcodes[$f] = $texto;
         }
     }
 
-//Desenho da barra
+    //Desenho da barra
 
 
-//Guarda inicial
-?><img src=imagens/p.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img 
-src=imagens/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img 
-src=imagens/p.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img 
-src=imagens/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img 
-<?php
-$texto = $valor ;
-if((strlen($texto) % 2) <> 0){
-    $texto = "0" . $texto;
-}
-
-// Draw dos dados
-while (strlen($texto) > 0) {
-  $i = round(esquerda($texto,2));
-  $texto = direita($texto,strlen($texto)-2);
-  $f = $barcodes[$i];
-  for($i=1;$i<11;$i+=2){
-    if (substr($f,($i-1),1) == "0") {
-      $f1 = $fino ;
-    }else{
-      $f1 = $largo ;
+    //Guarda inicial
+    ?><img src=imagens/p.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
+        src=imagens/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
+        src=imagens/p.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
+        src=imagens/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
+    <?php
+    $texto = $valor ;
+    if((strlen($texto) % 2) <> 0){
+        $texto = "0" . $texto;
     }
-?>
-    src=imagens/p.png width=<?php echo $f1?> height=<?php echo $altura?> border=0><img 
-<?php
-    if (substr($f,$i,1) == "0") {
-      $f2 = $fino ;
-    }else{
-      $f2 = $largo ;
-    }
-?>
-    src=imagens/b.png width=<?php echo $f2?> height=<?php echo $altura?> border=0><img 
-<?php
-  }
-}
 
-// Draw guarda final
-?>
-src=imagens/p.png width=<?php echo $largo?> height=<?php echo $altura?> border=0><img 
-src=imagens/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img 
-src=imagens/p.png width=<?php echo 1?> height=<?php echo $altura?> border=0> 
-  <?php
-} //Fim da função
+    // Draw dos dados
+    while (strlen($texto) > 0) {
+        $i = round(esquerda($texto,2));
+        $texto = direita($texto,strlen($texto)-2);
+        $f = $barcodes[$i];
+        for($i=1;$i<11;$i+=2){
+            if (substr($f,($i-1),1) == "0") {
+                $f1 = $fino ;
+            }else{
+                $f1 = $largo ;
+            }
+            ?>
+            src=imagens/p.png width=<?php echo $f1?> height=<?php echo $altura?> border=0><img
+                <?php
+                if (substr($f,$i,1) == "0") {
+                    $f2 = $fino ;
+                }else{
+                    $f2 = $largo ;
+                }
+                ?>
+                src=imagens/b.png width=<?php echo $f2?> height=<?php echo $altura?> border=0><img
+            <?php
+        }
+    }
+
+    // Draw guarda final
+    ?>
+    src=imagens/p.png width=<?php echo $largo?> height=<?php echo $altura?> border=0><img
+        src=imagens/b.png width=<?php echo $fino?> height=<?php echo $altura?> border=0><img
+        src=imagens/p.png width=<?php echo 1?> height=<?php echo $altura?> border=0>
+    <?php
+} //Fim da funÃ§Ã£o
 
 function esquerda($entra,$comp){
     return substr($entra,0,$comp);
@@ -268,22 +268,22 @@ function _dateToDays($year,$month,$day) {
         }
     }
     return ( floor((  146097 * $century)    /  4 ) +
-            floor(( 1461 * $year)        /  4 ) +
-            floor(( 153 * $month +  2) /  5 ) +
-                $day +  1721119);
+        floor(( 1461 * $year)        /  4 ) +
+        floor(( 153 * $month +  2) /  5 ) +
+        $day +  1721119);
 }
 
-function modulo_10($num) { 
+function modulo_10($num) {
     $numtotal10 = 0;
     $fator = 2;
-    
+
     // Separacao dos numeros
     for ($i = strlen($num); $i > 0; $i--) {
         // pega cada numero isoladamente
         $numeros[$i] = substr($num,$i-1,1);
         // Efetua multiplicacao do numero pelo (falor 10)
-        // 2002-07-07 01:33:34 Macete para adequar ao Mod10 do Itaú
-        $temp = $numeros[$i] * $fator; 
+        // 2002-07-07 01:33:34 Macete para adequar ao Mod10 do ItaÃº
+        $temp = $numeros[$i] * $fator;
         $temp0=0;
         foreach (preg_split('//',$temp,-1,PREG_SPLIT_NO_EMPTY) as $k=>$v){ $temp0+=$v; }
         $parcial10[$i] = $temp0; //$numeros[$i] * $fator;
@@ -295,17 +295,17 @@ function modulo_10($num) {
             $fator = 2; // intercala fator de multiplicacao (modulo 10)
         }
     }
-    
-    // várias linhas removidas, vide função original
+
+    // vÃ¡rias linhas removidas, vide funÃ§Ã£o original
     // Calculo do modulo 10
     $resto = $numtotal10 % 10;
     $digito = 10 - $resto;
     if ($resto == 0) {
         $digito = 0;
     }
-    
+
     return $digito;
-    
+
 }
 
 function modulo_11($num, $base=9, $r=0)  {
@@ -313,27 +313,27 @@ function modulo_11($num, $base=9, $r=0)  {
      *   Autor:
      *           Pablo Costa <pablo@users.sourceforge.net>
      *
-     *   Função:
-     *    Calculo do Modulo 11 para geracao do digito verificador 
-     *    de boletos bancarios conforme documentos obtidos 
-     *    da Febraban - www.febraban.org.br 
+     *   FunÃ§Ã£o:
+     *    Calculo do Modulo 11 para geracao do digito verificador
+     *    de boletos bancarios conforme documentos obtidos
+     *    da Febraban - www.febraban.org.br
      *
      *   Entrada:
-     *     $num: string numérica para a qual se deseja calcularo digito verificador;
+     *     $num: string numÃ©rica para a qual se deseja calcularo digito verificador;
      *     $base: valor maximo de multiplicacao [2-$base]
      *     $r: quando especificado um devolve somente o resto
      *
-     *   Saída:
+     *   SaÃ­da:
      *     Retorna o Digito verificador.
      *
-     *   Observações:
-     *     - Script desenvolvido sem nenhum reaproveitamento de código pré existente.
-     *     - Assume-se que a verificação do formato das variáveis de entrada é feita antes da execução deste script.
-     */                                        
-    
+     *   ObservaÃ§Ãµes:
+     *     - Script desenvolvido sem nenhum reaproveitamento de cÃ³digo prÃ© existente.
+     *     - Assume-se que a verificaÃ§Ã£o do formato das variÃ¡veis de entrada Ã© feita antes da execuÃ§Ã£o deste script.
+     */
+
     $soma = 0;
     $fator = 2;
-    
+
     /* Separacao dos numeros */
     for ($i = strlen($num); $i > 0; $i--) {
         // pega cada numero isoladamente
@@ -343,7 +343,7 @@ function modulo_11($num, $base=9, $r=0)  {
         // Soma dos digitos
         $soma += $parcial[$i];
         if ($fator == $base) {
-            // restaura fator de multiplicacao para 2 
+            // restaura fator de multiplicacao para 2
             $fator = 1;
         }
         $fator++;
@@ -366,39 +366,39 @@ function modulo_11($num, $base=9, $r=0)  {
 /**
  * --Diego
  */
- /*
+/*
 function monta_linha_digitavel($codigobanco ,$nummoeda ,$dv ,$fator_vencimento ,$valor ,$agencia ,$carteira ,$conta_cedente, $conta_cedente_dv ,$nosso_numero ,$dv_nosso_numero) {
-    $mod10  =  modulo_10($codigobanco.$nummoeda.$agencia.$carteira[0]);
-    $campo1 = $codigobanco.$nummoeda.$agencia.$carteira[0].$mod10;
-    $campo1 = substr($campo1, 0, 5) .".".substr($campo1, 5, 5);
-     
-    $mod10  = modulo_10(substr($carteira, 1, 2).$conta_cedente.$conta_cedente_dv.$nosso_numero[0]);
-    $campo2 = substr($carteira, 1, 2).$conta_cedente.$conta_cedente_dv.$nosso_numero[0].$mod10;
-    $campo2 = substr($campo2, 0, 5) .".". substr($campo2, 5, 6);
-    
-    $mod10  = modulo_10(substr($nosso_numero, 1, 9).$dv_nosso_numero);
-    $campo3 = substr($nosso_numero, 1, 9).$dv_nosso_numero.$mod10;
-    $campo3 = substr($campo3, 0, 5) .".". substr($campo3, 5, 6);
-    
-    $campo4 = $dv;
-    
-    $campo5 = $fator_vencimento.$valor;
-    
-    return "$campo1 $campo2 $campo3 $campo4 $campo5"; 
+   $mod10  =  modulo_10($codigobanco.$nummoeda.$agencia.$carteira[0]);
+   $campo1 = $codigobanco.$nummoeda.$agencia.$carteira[0].$mod10;
+   $campo1 = substr($campo1, 0, 5) .".".substr($campo1, 5, 5);
+
+   $mod10  = modulo_10(substr($carteira, 1, 2).$conta_cedente.$conta_cedente_dv.$nosso_numero[0]);
+   $campo2 = substr($carteira, 1, 2).$conta_cedente.$conta_cedente_dv.$nosso_numero[0].$mod10;
+   $campo2 = substr($campo2, 0, 5) .".". substr($campo2, 5, 6);
+
+   $mod10  = modulo_10(substr($nosso_numero, 1, 9).$dv_nosso_numero);
+   $campo3 = substr($nosso_numero, 1, 9).$dv_nosso_numero.$mod10;
+   $campo3 = substr($campo3, 0, 5) .".". substr($campo3, 5, 6);
+
+   $campo4 = $dv;
+
+   $campo5 = $fator_vencimento.$valor;
+
+   return "$campo1 $campo2 $campo3 $campo4 $campo5";
 }
 */
 
 
 function monta_linha_digitavel($codigo) {
-    // Posição 	Conteúdo
-    // 1 a 3    Número do banco
-    // 4        Código da Moeda - 9 para Real
-    // 5        Digito verificador do Código de Barras
+    // PosiÃ§Ã£o 	ConteÃºdo
+    // 1 a 3    NÃºmero do banco
+    // 4        CÃ³digo da Moeda - 9 para Real
+    // 5        Digito verificador do CÃ³digo de Barras
     // 6 a 9   Fator de Vencimento
     // 10 a 19 Valor (8 inteiros e 2 decimais)
     // 20 a 44 Campo Livre definido por cada banco (25 caracteres)
-    
-    // 1. Campo - composto pelo código do banco, código da moéda, as cinco primeiras posições
+
+    // 1. Campo - composto pelo cÃ³digo do banco, cÃ³digo da moÃ©da, as cinco primeiras posiÃ§Ãµes
     // do campo livre e DV (modulo10) deste campo
     $p1     = substr($codigo, 0, 4);
     $p2     = substr($codigo, 19, 5);
@@ -407,8 +407,8 @@ function monta_linha_digitavel($codigo) {
     $p5     = substr($p4, 0, 5);
     $p6     = substr($p4, 5);
     $campo1 = "$p5.$p6";
-    
-    // 2. Campo - composto pelas posiçoes 6 a 15 do campo livre
+
+    // 2. Campo - composto pelas posiÃ§oes 6 a 15 do campo livre
     // e livre e DV (modulo10) deste campo
     $p1     = substr($codigo, 24, 10);
     $p2     = modulo_10($p1);
@@ -416,7 +416,7 @@ function monta_linha_digitavel($codigo) {
     $p4     = substr($p3, 0, 5);
     $p5     = substr($p3, 5);
     $campo2 = "$p4.$p5";
-    
+
     // 3. Campo composto pelas posicoes 16 a 25 do campo livre
     // e livre e DV (modulo10) deste campo
     $p1     = substr($codigo, 34, 10);
@@ -425,18 +425,18 @@ function monta_linha_digitavel($codigo) {
     $p4     = substr($p3, 0, 5);
     $p5     = substr($p3, 5);
     $campo3 = "$p4.$p5";
-    
+
     // 4. Campo - digito verificador do codigo de barras
     $campo4 = substr($codigo, 4, 1);
-    
+
     // 5. Campo composto pelo fator vencimento e valor nominal do documento, sem
     // indicacao de zeros a esquerda e sem edicao (sem ponto e virgula). Quando se
     // tratar de valor zerado, a representacao deve ser 000 (tres zeros).
     $p1     = substr($codigo, 5, 4);
     $p2     = substr($codigo, 9, 10);
     $campo5 = "$p1$p2";
-    
-    return "$campo1 $campo2 $campo3 $campo4 $campo5"; 
+
+    return "$campo1 $campo2 $campo3 $campo4 $campo5";
 }
 
 function geraCodigoBanco($numero) {

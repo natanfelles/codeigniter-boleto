@@ -117,23 +117,20 @@
 		<h1><i class="fa fa-barcode"></i> CodeIgniter Boleto</h1>
 		<p>
 			Esse projeto possui as devidas adaptações no
-			<a href="https://github.com/CobreGratis/boletophp" target="_blank">Boleto PHP</a> para que boletos possam
-			ser gerados através do framework
+			<a href="https://github.com/CobreGratis/boletophp" target="_blank">Boleto PHP</a> para que boletos possam ser gerados através do framework
 			<a href="https://github.com/bcit-ci/CodeIgniter" target="_blank">CodeIgniter</a>.
 		</p>
-		<p>Minha intenção é poder facilitar o desenvolvimento de futuros projetos que precisem desse método de
-			pagamento.</p>
+		<p>Minha intenção é poder facilitar o desenvolvimento de futuros projetos que precisem desse método de pagamento.</p>
 	</div>
 	<div class="row" id="2">
 		<h2><i class="fa fa-file-code-o"></i> Veja como é fácil</h2>
 		<ol>
-			<li>Edite o arquivo <code>application/config/boleto.php</code> com as credenciais disponibilizadas pelo
-				banco e
-				as preferências do vendedor.
+			<li>Edite o arquivo
+				<code>application/config/boleto.php</code> com as credenciais disponibilizadas pelo banco e as preferências do vendedor.
 			</li>
 			<li>Configure seu <code>controller</code> conforme o exemplo abaixo:</li>
 		</ol>
-	<pre>class Boleto_output extends CI_Controller {
+	<pre>class Boleto_controller extends CI_Controller {
 
 	public function __construct()
 	{
@@ -141,17 +138,39 @@
 		$this->load->library('boleto');
 	}
 
+
 	public function index()
 	{
 		$dados = array(
+			// Informações necessárias para todos os bancos
 			'dias_de_prazo_para_pagamento' => 5,
-			'taxa_boleto' => 1,
-			'pedido' => array(),
-			'sacado' => array(),
+			'taxa_boleto'                  => 1,
+			'pedido'                       => array(
+				'nome'           => 'Serviços de Desenvolvimento Web',
+				'quantidade'     => '10',
+				'valor_unitario' => '80',
+				'numero'         => 10000000025,
+				'aceite'         => 'N',
+				'especie'        => 'R$',
+				'especie_doc'    => 'DM',
+			),
+			'sacado'                       => array(
+				'nome'     => 'João da Silva',
+				'endereco' => 'Av. Meninas Bonitas, 777',
+				'cidade'   => 'Sapiranga',
+				'uf'       => 'RS',
+				'cep'      => '93816-630',
+			),
+			// Informações necessárias que são específicas do Banco do Brasil
+			'variacao_carteira'            => '019',
+			'contrato'                     => 999999,
+			'convenio'                     => 7777777,
 		);
 
-		$this->boleto->cef($dados);
+		// Gera o boleto
+		$this->boleto->bb($dados);
 	}
+
 }</pre>
 	</div>
 	<div class="row" id="3">

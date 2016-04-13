@@ -220,17 +220,4 @@ class Boleto {
 		}
 	}
 
-
-	public function initialize($config = array())
-	{
-		if (isset($config))
-		{
-			foreach ($config as $index => $key)
-			{
-				$this->$index = $key;
-			}
-		}
-	}
-
-
 }

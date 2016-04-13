@@ -19,24 +19,34 @@ class Boleto_controller extends CI_Controller {
 
 	public function index()
 	{
-		$dados['dias_de_prazo_para_pagamento'] = 5;
-		$dados['taxa_boleto'] = 1;
+		$dados = array(
+			// Informações necessárias para todos os bancos
+			'dias_de_prazo_para_pagamento' => 5,
+			'taxa_boleto'                  => 1,
+			'pedido'                       => array(
+				'nome'           => 'Serviços de Desenvolvimento Web',
+				'quantidade'     => '10',
+				'valor_unitario' => '80',
+				'numero'         => 10000000025,
+				'aceite'         => 'N',
+				'especie'        => 'R$',
+				'especie_doc'    => 'DM',
+			),
+			'sacado'                       => array(
+				'nome'     => 'João da Silva',
+				'endereco' => 'Av. Meninas Bonitas, 777',
+				'cidade'   => 'Sapiranga',
+				'uf'       => 'RS',
+				'cep'      => '93816-630',
+			),
+			// Informações necessárias que são específicas do Banco do Brasil
+			'variacao_carteira'            => '019',
+			'contrato'                     => 999999,
+			'convenio'                     => 7777777,
+		);
 
-		$dados['pedido']['quantidade'] = 4;
-		$dados['pedido']['valor_unitario'] = 10;
-		$dados['pedido']['numero'] = 125;
-		$dados['pedido']['aceite'] = 'N';
-		$dados['pedido']['especie'] = 'R$';
-		$dados['pedido']['especie_doc'] = 'DS';
-
-		$dados['sacado']['nome'] = 'João da Silva';
-		$dados['sacado']['endereco'] = 'Av. Porto Palmeira';
-		$dados['sacado']['cidade'] = 'Sapiranga';
-		$dados['sacado']['uf'] = 'RS';
-		$dados['sacado']['cep'] = '93800-000';
-
-		$this->boleto->sofisa($dados);
-
+		// Gera o boleto
+		$this->boleto->bb($dados);
 	}
 
 }

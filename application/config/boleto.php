@@ -48,14 +48,14 @@ $config['boleto']['banco'] = 'cef';
  | -------------------------------------------------------------------
  */
 $config['boleto']['cedente'] = array(
-	'nome'    => 'Natan Felles',
+	'nome'    => 'Creative Webmaster',
 	'cpf_cnpj'    => '000111222-33',
 	'agencia' => '1234-8',
 	'conta'  => '56789-10',
 	'conta_cedente'  => '987654-5',
 	'carteira'  => '5',
 	'nosso_numero'  => '12345678',
-	'endereco' => 'Rua Logo Ali, 777',
+	'endereco' => 'Rua das Ações, 755',
 	'cidade' => 'Sapiranga',
 	'uf' => 'RS',
 );
@@ -66,9 +66,9 @@ $config['boleto']['cedente'] = array(
  | -------------------------------------------------------------------
  */
 $config['boleto']['demonstrativo'] = array(
-	'linha1' => 'Pagamento de Compra na Loja Nononononoa',
-	'linha2' => 'Mensalidade referente a nonon nonooon nononon <br> Taxa bancária - ',
-	'linha3' => 'BoletoPhp - http://www.boletophp.com.br',
+	'linha1' => 'Pagamento de serviços de desenvolvimento web',
+	'linha2' => 'Taxa bancária: R$ ',
+	'linha3' => 'CodeIgniter Boleto - https://github.com/natanfelles/codeigniter-boleto',
 );
 
 /*
@@ -77,10 +77,10 @@ $config['boleto']['demonstrativo'] = array(
  | -------------------------------------------------------------------
  */
 $config['boleto']['instrucoes'] = array(
-	'linha1' => '- Sr. Caixa, cobrar multa de 5% após o vencimento',
-	'linha2' => '- Receber até 10 dias após o vencimento',
-	'linha3' => '- Em caso de dúvidas entre em contato conosco: xxxx@xxxx.com.br',
-	'linha4' => '- Emitido pelo sistema Projeto BoletoPhp - www.boletophp.com.br',
+	'linha1' => '<br>- Sr. Caixa, cobrar multa de 5% após o vencimento',
+	'linha2' => '- Receber até 5 dias após o vencimento',
+	'linha3' => '- Em caso de dúvidas entre em contato conosco: natanfelles@gmail.com',
+	'linha4' => '- Desenvolvido por Natan Felles - www.natanfelles.github.io',
 );
 
 /*

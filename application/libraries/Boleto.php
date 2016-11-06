@@ -135,7 +135,7 @@ class Boleto {
 	}
 
 
-	public function cef_signcb($dados = array())
+	public function cef_sigcb($dados = array())
 	{
 		$this->setup($dados);
 		include 'boleto/boleto_cef_sigcb.php';
